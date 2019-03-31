@@ -1,6 +1,12 @@
 
 package Bureau.DAO;
-
+/**
+ * classe de mappage poo-relationnel bureau
+ *
+ * @author  David Sanchez Rodriguez 
+ * @version 1.0
+ * @see Bureau 
+ */
 
 import Bureau.DAO.DAO;
 import java.sql.SQLException;
