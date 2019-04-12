@@ -158,7 +158,16 @@ public class BureauDAOTest {
         if(result.indexOf(obj2)<0) fail("record introuvable "+obj2);
         instance.delete(obj1);
         instance.delete(obj2);
-        
+        /*
+        System.out.println("rechBureauDesc");
+        String BureauRdesc = "TestDESCRIPTION";
+        BureauDAO instance = new BureauDAO();
+        List<Bureau> expResult = null;
+        List<Bureau> result = instance.rechBureauDesc(BureauRdesc);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+        */
     }
 
     /**
@@ -184,5 +193,7 @@ public class BureauDAOTest {
         } catch (SQLException e) {}
        instance.delete(result);
     }
+    
+    
     
 }

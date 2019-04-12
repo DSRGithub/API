@@ -1,6 +1,8 @@
 
 package projet3_api.metier;
 
+import java.util.Objects;
+
 /**
  *classe metier du bureau 
  * @author David Sanchez Rodriguez 
@@ -104,6 +106,34 @@ public class Bureau {
     @Override
     public String toString() {
         return "Bureau{" + "IDBUR=" + IDBUR + ", SIGLE=" + SIGLE + ", TEL=" + TEL + ", DESCRIPTION=" + DESCRIPTION + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.IDBUR;
+        hash = 97 * hash + Objects.hashCode(this.SIGLE);
+        hash = 97 * hash + Objects.hashCode(this.TEL);
+        hash = 97 * hash + Objects.hashCode(this.DESCRIPTION);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Bureau other = (Bureau) obj;
+        if (!Objects.equals(this.DESCRIPTION, other.DESCRIPTION)) {
+            return false;
+        }
+        return true;
     }
 
    

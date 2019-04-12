@@ -167,7 +167,10 @@ public class BureauDAO extends DAO<Bureau> {
         
     }
     */
-    /** methode de recherche par description**/
+    /** methode de recherche par description
+     * @param BureauRdesc
+     * @return 
+     * @throws java.sql.SQLException*/
      
      public List<Bureau> rechBureauDesc(String BureauRdesc) throws SQLException {
         List<Bureau> bure = new ArrayList<>();
