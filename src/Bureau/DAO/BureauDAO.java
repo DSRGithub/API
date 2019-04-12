@@ -218,9 +218,10 @@ public class BureauDAO extends DAO<Bureau> {
          }
          }
 
-    void setConnection(Connection dbConnect) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+
+   
+   
 
     
     

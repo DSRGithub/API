@@ -52,26 +52,23 @@ public class BureauDAOTest {
     /**
      * Test of readSigle method, of class BureauDAO.
      * @throws java.lang.Exception
+     * aide du code de Arnaud pour le test readsigle.
      */
     @Test
     public void testReadSigle() throws Exception {
         System.out.println("readSigle");
-        Bureau obj = new Bureau(0,"TestSIGLE","TestTEL","TestDESCRIPTION");
-        String SIGLE = "TestSIGLE";
         BureauDAO instance = new BureauDAO();
-        instance.setConnection(dbConnect);
-        obj.setSIGLE("TestSIGLE");
-        obj.setTEL("TestTEL");
-        obj.setDESCRIPTION("TestDESCRIPTION");
-        Bureau expResult = obj;
+        instance.setDbConnect(dbConnect);
+        Bureau obj = new Bureau(0, "TestSIGLE", "TestTEL", "TestDESCRIPTION");
+        Bureau expResult = instance.create(obj);
+        String SIGLE = expResult.getSIGLE();
         Bureau result = instance.readSigle(SIGLE);
-        assertEquals("SIGLE différents",expResult.getSIGLE(), result.getSIGLE());
-        try{
-            result=instance.read(0);
-            fail("exception de SIGLE inconnu non générée");
-        }
-        catch(SQLException e){}
-       instance.delete(result);
+        assertEquals("SIGLE différents", expResult.getSIGLE(), result.getSIGLE());
+        assertEquals("TEL différents", expResult.getTEL(), result.getTEL());
+        assertEquals("DESCRIPTION différentes", expResult.getDESCRIPTION(), result.getDESCRIPTION());
+        instance.delete(result);
+        
+        
     }
 
     /**
@@ -83,25 +80,28 @@ public class BureauDAOTest {
         System.out.println("create");
         Bureau obj = new Bureau(0,"TestSIGLE","TestTEL","TestDESCRIPTION");
         BureauDAO instance = new BureauDAO();
-        instance.setConnection(dbConnect);
+        instance.setDbConnect(dbConnect);
         Bureau expResult = new Bureau(0,"TestSIGLE","TestTEL","TestDESCRIPTION") ;
         Bureau result = instance.create(obj);
-        assertEquals(expResult, result);
+        //assertEquals(expResult, result);
         assertEquals("sigles différents",expResult.getSIGLE(), result.getSIGLE());
         assertEquals("telephones différents",expResult.getTEL(), result.getTEL());
         assertEquals("descriptions différentes",expResult.getDESCRIPTION(), result.getDESCRIPTION());
-        
+        assertNotEquals("id non généré",expResult.getIDBUR(),result.getIDBUR());
+        instance.delete(result);
     }
 
     /**
      * Test of delete method, of class BureauDAO.
+     * @throws java.lang.Exception
      */
+    
     @Test
     public void testDelete() throws Exception {
         System.out.println("delete");
         Bureau obj = new Bureau(0,"TestSIGLE","TestTEL","TestDESCRIPTION");
         BureauDAO instance = new BureauDAO();
-        instance.setConnection(dbConnect);
+        instance.setDbConnect(dbConnect);
         obj = instance.create(obj);
         instance.delete(obj);
        try {
@@ -116,12 +116,14 @@ public class BureauDAOTest {
      * Test of update method, of class BureauDAO.
      * @throws java.lang.Exception
      */
+  
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
         Bureau obj = new Bureau(0,"TestSIGLE","TestTEL","TestDESCRIPTION");
         BureauDAO instance = new BureauDAO();
-        instance.setConnection(dbConnect);
+        instance.setDbConnect(dbConnect);
+        obj = instance.create(obj);
         obj.setSIGLE("TestSIGLE");
         obj.setTEL("TestTEL");
         obj.setDESCRIPTION("TestDESCRIPTION");
@@ -139,19 +141,23 @@ public class BureauDAOTest {
      * Test of rechBureauDesc method, of class BureauDAO.
      * @throws java.lang.Exception
      */
+    
     @Test
     public void testRechBureauDesc() throws Exception {
+        
         System.out.println("rechBureauDesc");
-        Bureau obj = new Bureau(0,"TestSIGLE","TestTEL","TestDESCRIPTION");
+        Bureau obj1 = new Bureau(0,"TestSIGLE","TestTEL","TestDESCRIPTION");
+        Bureau obj2 = new Bureau(0,"TestSIGLE2","TestTEL2","TestDESCRIPTION");
         String BureauRdesc = "TestDESCRIPTION";
         BureauDAO instance = new BureauDAO();
-        instance.setConnection(dbConnect);
-        obj=instance.create(obj);
-        List<Bureau> result = instance.rechBureauDesc(BureauRdesc);//
-        if(result.indexOf(obj)<0) fail("record introuvable "+obj);
-        instance.delete(obj);
-        
-        
+        instance.setDbConnect(dbConnect);
+        obj1=instance.create(obj1);
+        obj2=instance.create(obj2);
+        List<Bureau> result = instance.rechBureauDesc(BureauRdesc);
+        if(result.indexOf(obj1)<0) fail("record introuvable "+obj1);
+        if(result.indexOf(obj2)<0) fail("record introuvable "+obj2);
+        instance.delete(obj1);
+        instance.delete(obj2);
         
     }
 
@@ -162,13 +168,21 @@ public class BureauDAOTest {
     @Test
     public void testRead() throws Exception {
         System.out.println("read");
-        int IDBUR = 0;
         BureauDAO instance = new BureauDAO();
-        instance.setConnection(dbConnect);
-        Bureau expResult = new Bureau(0,"TestSIGLE","TestTEL","TestDESCRIPTION");
+        instance.setDbConnect(dbConnect);
+        Bureau obj = new Bureau(0,"TestSIGLE","TestTEL","TestDESCRIPTION");
+        Bureau expResult =instance.create(obj);
+        int IDBUR = expResult.getIDBUR();
         Bureau result = instance.read(IDBUR);
-        assertEquals(expResult, result);
-       
+        assertEquals("Id de bureau différents", expResult.getIDBUR(), result.getIDBUR());
+        assertEquals("sigles différents", expResult.getSIGLE(), result.getSIGLE());
+        assertEquals("telephone différents", expResult.getTEL(), result.getTEL());
+        assertEquals("descriptions différentes", expResult.getDESCRIPTION(), result.getDESCRIPTION());
+       try {
+            result = instance.read(0);
+            fail("Exception d'id inconnu non générée! ");
+        } catch (SQLException e) {}
+       instance.delete(result);
     }
     
 }
