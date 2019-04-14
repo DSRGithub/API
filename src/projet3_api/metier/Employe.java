@@ -1,6 +1,8 @@
 
 package projet3_api.metier;
 
+import java.util.Objects;
+
 /**
  *classe metier des employes 
  * @author David Sanchez Rodriguez 
@@ -126,6 +128,47 @@ public class Employe {
     @Override
     public String toString() {
         return "Employe{" + "IDEMP=" + IDEMP + ", MATRICULE=" + MATRICULE + ", NOM=" + NOM + ", PRENOM=" + PRENOM + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.IDEMP;
+        hash = 97 * hash + Objects.hashCode(this.MATRICULE);
+        hash = 97 * hash + Objects.hashCode(this.NOM);
+        hash = 97 * hash + Objects.hashCode(this.PRENOM);
+        hash = 97 * hash + this.IDBUR;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Employe other = (Employe) obj;
+        if (this.IDEMP != other.IDEMP) {
+            return false;
+        }
+        if (this.IDBUR != other.IDBUR) {
+            return false;
+        }
+        if (!Objects.equals(this.MATRICULE, other.MATRICULE)) {
+            return false;
+        }
+        if (!Objects.equals(this.NOM, other.NOM)) {
+            return false;
+        }
+        if (!Objects.equals(this.PRENOM, other.PRENOM)) {
+            return false;
+        }
+        return true;
     }
 
     

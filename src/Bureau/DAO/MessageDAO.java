@@ -1,8 +1,25 @@
 
 package Bureau.DAO;
 
+/**
+ * classe de mappage poo-relationnel message
+ *
+ * @author  David Sanchez Rodriguez 
+ * @version 1.0
+ * @see Message
+ */
 
-public class MessageDAO  {
+import Bureau.DAO.DAO;
+import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.*;
+import projet3_api.metier.Message;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class MessageDAO extends DAO<Message> {
     /**
      * création d'un message sur base des valeurs de son objet métier
      *
@@ -10,109 +27,105 @@ public class MessageDAO  {
      * @param obj message à créer
      * @return message créé
      */
-    /*
-    @Override
-    public Message create(Message obj) throws SQLException {
+    
+      @Override
+      public Message create(Message obj) throws SQLException {
         int n;
-        Employe b = null;
-        String q1="insert into PRO_EMPLOYE(MATRICULE,NOM,PRENOM) values(?,?,?)";
-        String q2="select IDEMP from PRO_EMPLOYE where MATRICULE=? and NOM=? and  PRENOM=?";
+        Message b = null;
+        String q1="insert into PRO_MESSAGE(contenu,idemp) values(?,?)";
+        String q2="select idmsg from PRO_MESSAGE where contenu=? and dateEnvoi=? and  idemp=?";
         try(PreparedStatement pstm1=dbConnect.prepareStatement(q1); 
                 PreparedStatement pstm2=dbConnect.prepareStatement(q2)){
-            pstm1.setString(1,obj.getMATRICULE());
-            pstm1.setString(2,obj.getNOM());
-            pstm1.setString(3,obj.getPRENOM());
+            pstm1.setString(1,obj.getContenu());
+            pstm1.setInt(2,obj.getIdemp());
             int p = pstm1.executeUpdate();
             if (p == 0) {
                 throw new SQLException("erreur de creation d'un employe, aucune ligne créée");
             }
-            pstm2.setString(1, obj.getMATRICULE());
-            pstm2.setString(2,obj.getNOM());
-            pstm2.setString(3,obj.getPRENOM());
+            pstm2.setString(1, obj.getContenu());
+            pstm1.setDate(1, java.sql.Date.valueOf(obj.getDateEnvoi()));
+            pstm2.setInt(3,obj.getIdemp());
             try (ResultSet rs = pstm2.executeQuery()) {
                 if (rs.next()) {
-                    int IDEMP = rs.getInt(1);
-                    obj.setIDEMP(IDEMP);
-                    return read(IDEMP);
+                    int idmsg = rs.getInt(1);
+                    obj.setIdmsg(idmsg);
+                    return read(idmsg);
                 } else {
-                    throw new SQLException("erreur de création de l'employé, je trouve pas ton record wesh");
+                    throw new SQLException("erreur de l'envoi du message record introuvable");
                 }
             }
         }
     }
-    */
-    /**
-     * récupération des données d'un employe sur base de son identifiant
-     *
-     * @throws SQLException identifiant inconnu
-     * @param MATRUCILE identifiant de l'employe
-     * @return employe trouve
-     */
     
-    /*
-    public Employe readMATRICULE(String MATRICULE) throws SQLException {
-        Employe b=null;
-        String req="select * from PRO_EMPLOYE where MATRICULE=?";
-         try(PreparedStatement p1=dbConnect.prepareStatement(req)){
-             p1.setString(1, MATRICULE);
-             try(ResultSet rs=p1.executeQuery()){
-                 if(rs.next()){
-                     int IDEMP=rs.getInt("IDEMP");
-                     //mettre nom de colones exacte
-                     String NOM=rs.getString("NOM");
-                     String PRENOM = rs.getString("PRENOM");
-                     b=new (IDEMP,MATRICULE,NOM,PRENOM);
-                 }
-                 else{
-                     throw new SQLException("Matricule du bureau inconnu");
-                 }
-             }
-         }
-        return b;
-    }
-*/
+    
     /**
-     * effacement de l'employe sur base de son identifiant
+     * effacement du sur base de son identifiant
      *
      * @throws SQLException erreur de suppression
-     * @param obj employe à supprimer
+     * @param obj message à supprimer
      */
-    /*
+    
     @Override
-    public void delete(Employe obj) throws SQLException {
-        String req="delete from PRO_EMPLOYE where MATRICULE=?";
+    public void delete(Message obj) throws SQLException {
+        String req="delete from PRO_Message where idmsg=?";
         try(PreparedStatement p=dbConnect.prepareStatement(req)){
-            p.setString(1,obj.getMATRICULE());
+            p.setInt(1,obj.getIdmsg());
             int n=p.executeUpdate();
             if(n==0){
-                throw new SQLException("aucune ligne employe effacée");
+                throw new SQLException("aucune ligne message effacée");
             }
         }
     }
-    */
+    
      /**
-     * mise à jour des données de l employé sur base de son identifiant
+     * mise à jour des données du message sur base de son identifiant
      *
-     * @return employe
-     * @param obj employe à mettre à jour
+     * @return message
+     * @param obj message à mettre à jour
      * @throws SQLException erreur de mise à jour
      */
-    /*
+    
     @Override
-    public Employe update(Employe obj) throws SQLException {
-        String req = "update PRO_EMPLOYE set TEL=?,DESCRIPTION=? where MATRICULE= ?";
+    public Message update(Message obj) throws SQLException {
+        String req = "update PRO_MESSAGE set contenu=?,idemp=? where idmsg= ?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
             
-            pstm.setString(3, obj.getMATRICULE());
-            pstm.setString(1, obj.getNOM());
-            pstm.setString(2, obj.getPRENOM());
+            pstm.setString(1, obj.getContenu());
+            pstm.setInt(2, obj.getIdemp());
             int n = pstm.executeUpdate();
             if (n == 0) {
-                throw new SQLException("aucune ligne du employe mise à jour");
+                throw new SQLException("aucune ligne du message mise à jour");
             }
             return obj;
         }
     }
-*/
+    /**
+     * récupération des données d'un message sur base de son identifiant
+     *
+     * @throws SQLException identifiant inconnu
+     * @param idemp identifiant du message
+     * @return message trouvé 
+     */
+     @Override
+    public Message read(int idemp) throws SQLException {
+    
+        String req="select * from PRO_MESSAGE where idemp=?";
+         try(PreparedStatement p1=dbConnect.prepareStatement(req)){
+             p1.setInt(1, idemp);
+             try(ResultSet rs=p1.executeQuery()){
+                 if(rs.next()){
+                     String contenu=rs.getString("CONTENU");
+                     LocalDate dateEnvoi = rs.getDate("DATEENVOI").toLocalDate();
+                     int    idmsg= rs.getInt("IDMSG");
+                     return new Message(idmsg,contenu,dateEnvoi,idemp);
+                 }
+                 else{
+                     throw new SQLException("identifiant message inconnu");
+                 }
+             }
+         }
+         }
+
+    
 }

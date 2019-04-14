@@ -199,7 +199,13 @@ public class BureauDAO extends DAO<Bureau> {
         }
         
     }
-
+    /**
+     * récupération des données d'un bureau sur base de son identifiant
+     *
+     * @throws SQLException identifiant inconnu
+     * @param IDBUR identifiant du bureau
+     * @return bureau trouvé 
+     */
     @Override
     public Bureau read(int IDBUR) throws SQLException {
     

@@ -59,12 +59,12 @@ public class GestionGenerale {
         GestionEmploye ge = new GestionEmploye();
         ge.gestion();
     }
-    /*
-    public void menuMessage(){
-        GestionMessage pre=new GestionMessage();
-        pre.menuP();
+    
+    public void menuMessage() throws SQLException{
+        GestionMessage ms=new GestionMessage();
+        ms.gestion();
     }
-   */
+   
     /**
      * @param args the command line arguments
      */

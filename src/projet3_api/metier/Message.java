@@ -1,10 +1,12 @@
 
 package projet3_api.metier;
 
+import java.time.LocalDate;
+
 /**
  *classe metier de message
  * @author David Sanchez Rodriguez 
- * @version 1.0
+ * @version 2.0
  */
 public class Message {
     /**
@@ -18,7 +20,11 @@ public class Message {
    /**
    * date envoi du message (localdate)
    */
-   protected String dateEnvoi;
+   protected LocalDate dateEnvoi;
+   /**
+   * date envoi du message (localdate)
+   */
+   protected int idemp;
    /**
    * constructeur par défaut
    */
@@ -29,11 +35,13 @@ public class Message {
  * @param idmsg identifiant unique du message, affecté par la base de données
  * @param contenu contenu du message envoyé
  * @param dateEnvoi date envoie associée au message
+ * @param idemp identifiant de celui qui envoie le message
  */
-    public Message(int idmsg, String contenu, String dateEnvoi) {
+    public Message(int idmsg, String contenu, LocalDate dateEnvoi , int idemp) {
         this.idmsg = idmsg;
         this.contenu = contenu;
         this.dateEnvoi = dateEnvoi;
+        this.idemp = idemp;
     }
     /**
     * getter idmsqg
@@ -67,23 +75,41 @@ public class Message {
     * getter dateenvoi
     * @return date envoi du message
     */
-    public String getDateEnvoi() {
+    public LocalDate getDateEnvoi() {
         return dateEnvoi;
     }
     /**
      * setter dateenvoi
      * @param dateEnvoi date envoi du message
      */
-    public void setDateEnvoi(String dateEnvoi) {
+    public void setDateEnvoi(LocalDate dateEnvoi) {
         this.dateEnvoi = dateEnvoi;
     }
-     /**
+    /**
+    * getter idemp
+    * @return identifiant de l'envoyeur
+    */
+    public int getIdemp() {
+        return idemp;
+    }
+    /**
+     * setter idemp
+     * @param idemp identifiant de l'envoyeur
+     */
+    public void setIdemp(int idemp) {
+        this.idemp = idemp;
+    }
+    /**
  * méthode toString
  * @return informations complètes
  */
     @Override
     public String toString() {
-        return "Message{" + "idmsg=" + idmsg + ", contenu=" + contenu + ", dateEnvoi=" + dateEnvoi + '}';
+        return "Message{" + "idmsg=" + idmsg + ", contenu=" + contenu + ", dateEnvoi=" + dateEnvoi + ", idemp=" + idemp + '}';
+    }
+
+    public String getDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
    
