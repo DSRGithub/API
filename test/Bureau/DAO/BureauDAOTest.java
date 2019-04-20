@@ -17,6 +17,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import projet3_api.metier.Bureau;
 import myconnections.DBConnection;
+import projet3_api.metier.Employe;
+import projet3_api.metier.Vue4DAO_PRO;
 /**
  *
  * @author David
@@ -88,7 +90,17 @@ public class BureauDAOTest {
         assertEquals("telephones différents",expResult.getTEL(), result.getTEL());
         assertEquals("descriptions différentes",expResult.getDESCRIPTION(), result.getDESCRIPTION());
         assertNotEquals("id non généré",expResult.getIDBUR(),result.getIDBUR());
-        instance.delete(result);
+        //instance.delete(result);
+        //Test doublon
+        obj = new Bureau(0,"TestSIGLE","TestTEL2","TestDESCRIPTION2") ;
+        try {
+            Bureau result_2 = instance.create(obj);
+            fail("Exception de doublon non générée");
+            instance.delete(result_2);
+        } catch (SQLException e) {
+            instance.delete(result);
+        }
+        
     }
 
     /**
@@ -110,6 +122,20 @@ public class BureauDAOTest {
             instance.delete(obj);
         }
         catch(SQLException e){}
+       /*
+       //test supp en cascade si bureau avec employé record associé 
+       instance.create(obj);
+        Employe emp=new Employe(0,"TestMATRICULE","TestNOM","TestPRENOM",1);
+        EmployeDAO empl=new EmployeDAO();
+        empl.setDbConnect(dbConnect);
+        emp=empl.create(emp);
+        try{
+            instance.delete(obj);
+            fail("exception de record de parent clé étrangère");
+        }catch(Exception e){}
+        empl.delete(emp);
+        instance.delete(obj);
+       */
     }
 
     /**
@@ -195,5 +221,25 @@ public class BureauDAOTest {
     }
     
     
+    
+    
+     /**
+     * Test of rech method, of class BureauDAO.
+     * @throws java.lang.Exception
+     */
+    
+     //@Test
+    public void testRech() throws Exception {
+        System.out.println("rech");
+        String sig = "TestSigle";
+        BureauDAO instance = new BureauDAO();
+        List<Vue4DAO_PRO> expResult = null;
+        List<Vue4DAO_PRO> result = instance.rech(sig);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+      
+       
+    }
     
 }

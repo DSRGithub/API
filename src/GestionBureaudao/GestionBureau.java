@@ -9,10 +9,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 import Bureau.DAO.BureauDAO;
-import Bureau.DAO.EmployeDAO;
 import Bureau.DAO.DAO;
 import projet3_api.metier.Bureau;
-import projet3_api.metier.Employe;
+import projet3_api.metier.Vue4DAO_PRO;
 import myconnections.DBConnection;
 
 public class GestionBureau {
@@ -41,7 +40,7 @@ public class GestionBureau {
         int ch = 0;
         do {
             
-            System.out.println(" |======  MENU PRINCIPAL ======|\n1.creation bureau \n2.recherche exacte bureau ( sigle) \n3.recherche partielle ( description) \n4.modification \n5.effacement \n6.fin");
+            System.out.println(" |======  MENU PRINCIPAL ======|\n1.creation bureau \n2.recherche exacte bureau ( sigle) \n3.recherche partielle ( description) \n4.modification \n5.effacement\n6.Liste employé/bureau \n7.fin");
             System.out.print("choix :");
             ch = sc.nextInt();
             sc.skip("\n");
@@ -63,15 +62,19 @@ public class GestionBureau {
                 case 5:
                     effacement();
                     break;
-                
+                    
                 case 6:
+                    rech();
+                    break;
+                
+                case 7:
                     System.exit(0);
                     break;
                 default:
                     System.out.println("choix incorrect");
             }
 
-        } while (ch !=6);
+        } while (ch !=7);
         DBConnection.closeConnection();
     
      
@@ -164,6 +167,23 @@ public class GestionBureau {
         } catch (SQLException e) {
             System.out.println("erreur " + e.getMessage());
         }
+    }
+       
+       
+        public void rech() {
+        System.out.println("Rechercher liste employé :");
+        System.out.println("sigle de bureau complet ou partiel à rechercher :");
+        String sigle = sc.nextLine();
+         try {
+            List<Vue4DAO_PRO> alc = ((BureauDAO) BureauDAO).rech(sigle);
+            for (Vue4DAO_PRO cl : alc) {
+                System.out.println(cl);
+            }
+        } catch (SQLException e) {
+            System.out.println("erreur " + e.getMessage());
+        }
+       
+        
     }
    
        

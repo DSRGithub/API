@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.*;
 import java.util.*;
 import projet3_api.metier.Bureau;
+import projet3_api.metier.Vue4DAO_PRO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -231,7 +232,35 @@ public class BureauDAO extends DAO<Bureau> {
 
    
    
+/**
+     * méthode permettant de récupérer tous les employé et leurs bureaux
+     *@param sig sigle partiel recherchée
+     * @return liste de employé
+     * @throws SQLException erreur
+     */
+    public List<Vue4DAO_PRO> rech(String sig) throws SQLException {
+        List<Vue4DAO_PRO> plusieurs = new ArrayList<>();
+        String req = "select * from vue4DAO_PRO where sigle LIKE ?";
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            pstm.setString(1, "%" + sig + "%");
+            try (ResultSet rs = pstm.executeQuery()) {
+                boolean trouve = false;
+                while (rs.next()) {
+                    trouve = true;
+                    String nom = rs.getString("nom");
+                    String prenom= rs.getString("prenom");
+                    String sigle = rs.getString("sigle");
+                    plusieurs.add(new Vue4DAO_PRO(nom,prenom,sigle));
+                }
 
+                if (!trouve) {
+                    throw new SQLException("erreur au niveau du sigle ");
+                } else {
+                    return plusieurs;
+                }
+            }
+        }
+    }
     
     
 }
