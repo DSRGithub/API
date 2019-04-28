@@ -106,9 +106,12 @@ public class GestionBureau {
         
         System.out.println("Recherche sur base du Sigle du bureau  :"); 
         String sig = sc.nextLine();
+        try{
         BureauActuel = BureauDAO.readSigle(sig);
            System.out.println("local recherche "+ BureauActuel);
-           
+        } catch( SQLException e) {
+            System.out.println("erreur " + e.getMessage());
+       }
         
         
     }
@@ -129,7 +132,16 @@ public class GestionBureau {
     
       
       
-       public void modification() { 
+       public void modification() throws SQLException { 
+         if (BureauActuel == null) {
+            System.out.println("Veuillez d'abord choisir un bureau actuel pour continuer");
+            rechercheExacte();
+        } 
+         if (BureauActuel == null) {
+            System.out.println("erreur aucun bureau actuel !");
+         }
+         else{
+            
         String option=""; int choix;
         try {
             
@@ -157,15 +169,26 @@ public class GestionBureau {
         } catch (SQLException e) {
             System.out.println("erreur " + e.getMessage());
         }
-         
+         } 
     }
       
     
-       public void effacement(){  
-       try {
-              BureauDAO.delete(BureauActuel);
+       public void effacement() throws SQLException{
+        if (BureauActuel == null) {
+            System.out.println("Veuillez d'abord choisir un bureau actuel pour continuer");
+            rechercheExacte();
+        } 
+        if (BureauActuel == null) {
+            System.out.println("erreur lors de la recherche");
+            
+        } 
+        else{
+        try {
+            BureauDAO.delete(BureauActuel);
+            System.out.println("Bureau correctement effacé");
         } catch (SQLException e) {
             System.out.println("erreur " + e.getMessage());
+        }
         }
     }
        
@@ -180,7 +203,7 @@ public class GestionBureau {
                 System.out.println(cl);
             }
         } catch (SQLException e) {
-            System.out.println("erreur " + e.getMessage());
+            System.out.println("probleme " + e.getMessage());
         }
        
         
