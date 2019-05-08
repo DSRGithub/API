@@ -192,7 +192,7 @@ public class BureauDAO extends DAO<Bureau> {
                 }
 
                 if (!trouve) {
-                    throw new SQLException("bureau non inconnu");
+                    throw new SQLException("bureau  inconnu");
                 } else {
                     return bure;
                 }

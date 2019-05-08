@@ -9,12 +9,12 @@ package swing;
  *
  * @author David
  */
-public class updateBureau_jframe extends javax.swing.JFrame {
+public class GestionGenerale_jframe extends javax.swing.JFrame {
 
     /**
-     * Creates new form updateBureau_jframe
+     * Creates new form GestionGenerale_jframe
      */
-    public updateBureau_jframe() {
+    public GestionGenerale_jframe() {
         initComponents();
     }
 
@@ -27,7 +27,19 @@ public class updateBureau_jframe extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuBureau = new javax.swing.JMenu();
+        jMenuEmploye = new javax.swing.JMenu();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jMenuBureau.setText("Bureau");
+        jMenuBar1.add(jMenuBureau);
+
+        jMenuEmploye.setText("Employe");
+        jMenuBar1.add(jMenuEmploye);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -37,7 +49,7 @@ public class updateBureau_jframe extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         pack();
@@ -60,24 +72,27 @@ public class updateBureau_jframe extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(updateBureau_jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionGenerale_jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(updateBureau_jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionGenerale_jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(updateBureau_jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionGenerale_jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(updateBureau_jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionGenerale_jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new updateBureau_jframe().setVisible(true);
+                new GestionGenerale_jframe().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuBureau;
+    private javax.swing.JMenu jMenuEmploye;
     // End of variables declaration//GEN-END:variables
 }
