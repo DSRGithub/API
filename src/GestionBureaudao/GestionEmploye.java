@@ -115,15 +115,26 @@ public class GestionEmploye {
         
         System.out.println("Recherche sur base du matricule de l'employe  :"); 
         String mat = sc.nextLine();
-        EmployeActuel = EmployeDAO.readMATRICULE(mat);
+       try{
+           EmployeActuel = EmployeDAO.readMATRICULE(mat);
            System.out.println("employe recherche "+ EmployeActuel);
-           
+          } catch( SQLException e) {
+            System.out.println("erreur " + e.getMessage());
+       }
         
         
     }
        
        
-       public void modificationEmploye() { 
+       public void modificationEmploye() throws SQLException { 
+          if (EmployeActuel == null) {
+            System.out.println("Veuillez d'abord choisir un employe pour continuer");
+            rechercheEmploye();
+        } 
+         if (EmployeActuel == null) {
+            System.out.println("erreur aucun employe actuel !");
+         }
+         else{
         String option=""; int choix;
         try {
             
@@ -156,18 +167,29 @@ public class GestionEmploye {
         } catch (SQLException e) {
             System.out.println("erreur " + e.getMessage());
         }
+         }
          
     }
       
    
     
       
-       public void effacementEmploye(){  
+       public void effacementEmploye() throws SQLException{  
+        if (EmployeActuel == null) {
+            System.out.println("Veuillez d'abord choisir un bureau actuel pour continuer");
+            rechercheEmploye();
+        } 
+        if (EmployeActuel == null) {
+            System.out.println("erreur lors de la recherche");
+            
+        } 
+        else{   
        try {
               EmployeDAO.delete(EmployeActuel);
         } catch (SQLException e) {
             System.out.println("erreur " + e.getMessage());
         }
+       }
     } 
        
      public boolean verifier_chaine(String ch, String regex){
