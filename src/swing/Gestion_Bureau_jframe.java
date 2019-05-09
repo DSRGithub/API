@@ -31,6 +31,8 @@ public class Gestion_Bureau_jframe extends javax.swing.JFrame {
          BureauDAO bureauDAO = new BureauDAO();
          bureauDAO.setDbConnect(dbConnect);
          creationBureau_jpanel2.setBureauDAO(bureauDAO);
+         recherchePartielleBureau_jpanel1.setBureauDAO(bureauDAO);
+         rechecheExacteBureau_jpanel1.setBureauDAO(bureauDAO);
     }
 
     /**
@@ -43,6 +45,8 @@ public class Gestion_Bureau_jframe extends javax.swing.JFrame {
     private void initComponents() {
 
         creationBureau_jpanel2 = new swing.CreationBureau_jpanel();
+        recherchePartielleBureau_jpanel1 = new swing.RecherchePartielleBureau_jpanel();
+        rechecheExacteBureau_jpanel1 = new swing.RechecheExacteBureau_jpanel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         creation = new javax.swing.JMenuItem();
@@ -52,6 +56,8 @@ public class Gestion_Bureau_jframe extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
         getContentPane().add(creationBureau_jpanel2, "card2");
+        getContentPane().add(recherchePartielleBureau_jpanel1, "card3");
+        getContentPane().add(rechecheExacteBureau_jpanel1, "card4");
 
         jMenu3.setText("Menu Bureau");
 
@@ -87,15 +93,15 @@ public class Gestion_Bureau_jframe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void creationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creationActionPerformed
-        cardl.show(this.getContentPane(), "cardCreationBureau_jpanel");
+        cardl.show(this.getContentPane(), "card2");
     }//GEN-LAST:event_creationActionPerformed
 
     private void rechercheexacteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheexacteActionPerformed
-        cardl.show(this.getContentPane(), "cardRechercheExacteBureau_jpanel");
+        cardl.show(this.getContentPane(), "card4");
     }//GEN-LAST:event_rechercheexacteActionPerformed
 
     private void recherchepartielleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recherchepartielleActionPerformed
-        cardl.show(this.getContentPane(), "cardRecherchePartielleBureau_jpanel");
+        cardl.show(this.getContentPane(), "card3");
     }//GEN-LAST:event_recherchepartielleActionPerformed
 
     /**
@@ -138,6 +144,8 @@ public class Gestion_Bureau_jframe extends javax.swing.JFrame {
     private swing.CreationBureau_jpanel creationBureau_jpanel2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar2;
+    private swing.RechecheExacteBureau_jpanel rechecheExacteBureau_jpanel1;
+    private swing.RecherchePartielleBureau_jpanel recherchePartielleBureau_jpanel1;
     private javax.swing.JMenuItem rechercheexacte;
     private javax.swing.JMenuItem recherchepartielle;
     // End of variables declaration//GEN-END:variables

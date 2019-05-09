@@ -16,14 +16,22 @@ import Bureau.DAO.BureauDAO;
  * @author David
  */
 public class RecherchePartielleBureau_jpanel extends javax.swing.JPanel {
-
+       BureauDAO bureauDAO=null;
     /**
      * Creates new form RecherchePartielleBureau_jpanel
      */
     public RecherchePartielleBureau_jpanel() {
         initComponents();
+        dft1.addColumn("idbur");
+        dft1.addColumn("Sigle");
+        dft1.addColumn("tel");
+        dft1.addColumn("description");
+        jTable1.setModel(dft1);
     }
-
+    DefaultTableModel dft1=new DefaultTableModel();
+    public void setBureauDAO(BureauDAO bureauDAO){
+        this.bureauDAO=bureauDAO;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,29 +41,45 @@ public class RecherchePartielleBureau_jpanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        desc = new javax.swing.JLabel();
+        desc_form = new javax.swing.JTextField();
+        desc_rech_form = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        jLabel1.setText("jLabel1");
+        desc.setText("description");
 
-        jTextField1.setText("jTextField1");
+        desc_form.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_formActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("jButton1");
+        desc_rech_form.setText("recherche");
+        desc_rech_form.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_rech_formActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "idbur", "sigle", "telephone", "description"
             }
         ));
+        jTable1.setToolTipText("");
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -64,11 +88,11 @@ public class RecherchePartielleBureau_jpanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(jLabel1)
-                .addGap(66, 66, 66)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(desc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(desc_form, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(desc_rech_form)
                 .addGap(27, 27, 27))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
@@ -80,21 +104,49 @@ public class RecherchePartielleBureau_jpanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(desc)
+                    .addComponent(desc_form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(desc_rech_form))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void desc_formActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desc_formActionPerformed
+       
+    }//GEN-LAST:event_desc_formActionPerformed
+
+    private void desc_rech_formActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desc_rech_formActionPerformed
+         try{
+            String rech=desc_form.getText();
+            List<Bureau> lbur=bureauDAO.rechBureauDesc(rech);
+            int i=dft1.getRowCount();
+            for(int j=i-1;j>0;j--){
+                dft1.removeRow(j);
+            }
+            for(Bureau bur:lbur){
+                Vector v=new Vector();
+                v.add(bur.getIDBUR());
+                v.add(bur.getSIGLE());
+                v.add(bur.getTEL());
+                v.add(bur.getDESCRIPTION());
+                dft1.addRow(v);
+                
+            }
+        }catch(Exception e){
+           JOptionPane.showMessageDialog(this,e.getMessage(),"ERREUR",JOptionPane.ERROR_MESSAGE);
+
+        }
+
+    }//GEN-LAST:event_desc_rech_formActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel desc;
+    private javax.swing.JTextField desc_form;
+    private javax.swing.JButton desc_rech_form;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

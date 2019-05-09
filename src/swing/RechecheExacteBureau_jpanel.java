@@ -4,17 +4,18 @@
  * and open the template in the editor.
  */
 package swing;
-import projet3_api.metier.Bureau;
 import Bureau.DAO.BureauDAO;
+import projet3_api.metier.Bureau;
+
 import javax.swing.JOptionPane;
 /**
  *
  * @author David
  */
- BureauDAO bureauDAO=null;
- Bureau bur=null;
-public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
 
+public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
+     BureauDAO bureauDAO=null;
+     Bureau bur=null;
     /**
      * Creates new form RechecheExacteBureau_jpanel
      */
@@ -141,11 +142,12 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
 
     private void jButtonrechercheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonrechercheActionPerformed
         try{
-            int idbur=Integer.parseInt(idbur_form.getText());
-            bur=bureauDAO.read(idbur);
-            sigle_form.setText(bur.getSigle());
-            tel_form.setText(bur.getTel());
-            desc_form.setText(bur.getDescription());
+            //int idbur=Integer.parseInt(idbur_form.getText());
+            String SIGLE =sigle_form.getText();
+            bur=bureauDAO.readSigle(SIGLE);
+            idbur_form.setText(""+bur.getIDBUR());
+            tel_form.setText(""+bur.getTEL());
+            desc_form.setText(bur.getDESCRIPTION());
             JOptionPane.showConfirmDialog(this,"bureau trouvé","succès",JOptionPane.INFORMATION_MESSAGE);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,e.getMessage(),"ERREUR",JOptionPane.ERROR_MESSAGE);
