@@ -5,9 +5,13 @@
  */
 package swing;
 import Bureau.DAO.BureauDAO;
+import java.util.List;
+import java.util.Vector;
 import projet3_api.metier.Bureau;
-
+import projet3_api.metier.Employe;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import projet3_api.metier.Vue4DAO_PRO;
 /**
  *
  * @author David
@@ -21,7 +25,13 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
      */
     public RechecheExacteBureau_jpanel() {
         initComponents();
+        dft1.addColumn("nom");
+        dft1.addColumn("prenom");
+        dft1.addColumn("sigle");
+        jTableVue.setModel(dft1);
     }
+    DefaultTableModel dft1=new DefaultTableModel();
+   
     public void setBureauDAO(BureauDAO bureauDAO){
         this.bureauDAO=bureauDAO;
     }
@@ -45,6 +55,8 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
         idbur_form = new javax.swing.JTextField();
         tel_form = new javax.swing.JTextField();
         desc_form = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableVue = new javax.swing.JTable();
 
         jLabel1.setText("idbur");
 
@@ -81,32 +93,53 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
             }
         });
 
+        jTableVue.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nom", "Prenom", "Sigle"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableVue);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(112, 112, 112)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(sigle_form, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tel_form, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(desc_form, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                    .addComponent(idbur_form))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jButtonrecherche)
-                .addGap(32, 32, 32)
-                .addComponent(jButtonmaj)
-                .addGap(47, 47, 47)
-                .addComponent(jButtoneffacer)
-                .addGap(76, 76, 76))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(112, 112, 112)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(sigle_form, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tel_form, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(desc_form, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(idbur_form)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jButtonrecherche)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonmaj, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(85, 85, 85)
+                            .addComponent(jButtoneffacer))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(308, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,12 +160,14 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(desc_form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonrecherche)
                     .addComponent(jButtonmaj)
                     .addComponent(jButtoneffacer))
-                .addGap(36, 36, 36))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -151,6 +186,25 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
             JOptionPane.showConfirmDialog(this,"bureau trouvé","succès",JOptionPane.INFORMATION_MESSAGE);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,e.getMessage(),"ERREUR",JOptionPane.ERROR_MESSAGE);
+
+        }
+           try{
+            String rech=sigle_form.getText();
+            List<Vue4DAO_PRO> lbur=bureauDAO.rech(rech);
+            int i=dft1.getRowCount();
+            for(int j=i-1;j>0;j--){
+                dft1.removeRow(j);
+            }
+            for(Vue4DAO_PRO bur:lbur){
+                Vector v=new Vector();
+                v.add(bur.getNom());
+                v.add(bur.getPrenom());
+                v.add(bur.getSigle());
+                dft1.addRow(v);
+                
+            }
+        }catch(Exception e){
+           JOptionPane.showMessageDialog(this,e.getMessage(),"ERREUR",JOptionPane.ERROR_MESSAGE);
 
         }
     }//GEN-LAST:event_jButtonrechercheActionPerformed
@@ -197,6 +251,8 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableVue;
     private javax.swing.JTextField sigle_form;
     private javax.swing.JTextField tel_form;
     // End of variables declaration//GEN-END:variables
