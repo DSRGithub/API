@@ -204,7 +204,7 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
                 
             }
         }catch(Exception e){
-           JOptionPane.showMessageDialog(this,e.getMessage(),"ERREUR",JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(this,e.getMessage(),"aucun employe dans ce bureau",JOptionPane.ERROR_MESSAGE);
 
         }
     }//GEN-LAST:event_jButtonrechercheActionPerformed
