@@ -47,7 +47,9 @@ public class CreationBureau_jpanel extends javax.swing.JPanel {
 
         desc.setText("description");
 
+        ButCreateBureau.setIcon(new javax.swing.ImageIcon("C:\\Users\\David\\Documents\\cours de 2eme\\quadri2\\Application informatique 2 (java)\\PROJET APPLICATIONS INFORMATIQUE SUJET 3\\images_bureau.png")); // NOI18N
         ButCreateBureau.setText("création ");
+        ButCreateBureau.setBorder(new javax.swing.border.MatteBorder(null));
         ButCreateBureau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButCreateBureauActionPerformed(evt);
@@ -74,13 +76,14 @@ public class CreationBureau_jpanel extends javax.swing.JPanel {
                     .addComponent(desc)
                     .addComponent(idbur_form))
                 .addGap(93, 93, 93)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ButCreateBureau)
-                    .addComponent(sigle_form)
-                    .addComponent(tel_form)
-                    .addComponent(desc_form, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                    .addComponent(idbur))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(sigle_form, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                        .addComponent(tel_form)
+                        .addComponent(desc_form)
+                        .addComponent(idbur))
+                    .addComponent(ButCreateBureau, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,8 +105,8 @@ public class CreationBureau_jpanel extends javax.swing.JPanel {
                     .addComponent(desc_form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(desc))
                 .addGap(32, 32, 32)
-                .addComponent(ButCreateBureau)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addComponent(ButCreateBureau, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

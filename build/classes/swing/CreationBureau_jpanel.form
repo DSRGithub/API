@@ -25,14 +25,16 @@
                   <Component id="idbur_form" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="ButCreateBureau" min="-2" max="-2" attributes="0"/>
-                  <Component id="sigle_form" max="32767" attributes="0"/>
-                  <Component id="tel_form" alignment="0" max="32767" attributes="0"/>
-                  <Component id="desc_form" alignment="0" pref="100" max="32767" attributes="0"/>
-                  <Component id="idbur" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="sigle_form" pref="199" max="32767" attributes="0"/>
+                      <Component id="tel_form" alignment="0" max="32767" attributes="0"/>
+                      <Component id="desc_form" alignment="0" max="32767" attributes="0"/>
+                      <Component id="idbur" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="ButCreateBureau" min="-2" pref="209" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="117" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,8 +62,8 @@
                   <Component id="desc" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Component id="ButCreateBureau" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="69" max="32767" attributes="0"/>
+              <Component id="ButCreateBureau" min="-2" pref="93" max="-2" attributes="0"/>
+              <EmptySpace pref="77" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -90,7 +92,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="ButCreateBureau">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="C:\Users\David\Documents\cours de 2eme\quadri2\Application informatique 2 (java)\PROJET APPLICATIONS INFORMATIQUE SUJET 3\images_bureau.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="cr&#xe9;ation "/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+            <MatteColorBorder/>
+          </Border>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButCreateBureauActionPerformed"/>
