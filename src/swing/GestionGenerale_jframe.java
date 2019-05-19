@@ -4,7 +4,13 @@
  * and open the template in the editor.
  */
 package swing;
-
+import java.awt.CardLayout;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+import Bureau.DAO.BureauDAO;
+import Bureau.DAO.EmployeDAO;
+import Bureau.DAO.DAO;
+import myconnections.DBConnection;
 /**
  *
  * @author David
@@ -14,8 +20,24 @@ public class GestionGenerale_jframe extends javax.swing.JFrame {
     /**
      * Creates new form GestionGenerale_jframe
      */
+    CardLayout cardl;
     public GestionGenerale_jframe() {
         initComponents();
+        cardl=(CardLayout)this.getContentPane().getLayout();
+         Connection dbConnect = DBConnection.getConnection();
+        if (dbConnect == null) {
+            System.out.println("connection invalide");
+            JOptionPane.showMessageDialog(this,"connexion invalide","ERREUR",JOptionPane.ERROR_MESSAGE);
+        }
+         BureauDAO bureauDAO = new BureauDAO();
+         bureauDAO.setDbConnect(dbConnect);
+         creationBureau_jpanel1.setBureauDAO(bureauDAO);
+         recherchePartielleBureau_jpanel1.setBureauDAO(bureauDAO);
+         rechecheExacteBureau_jpanel1.setBureauDAO(bureauDAO);
+         EmployeDAO employeDAO = new EmployeDAO();
+         employeDAO.setDbConnect(dbConnect);
+         creationEmploye_jpanel1.setEmployeDAO(employeDAO);
+         rechercheEmploye_jpanel1.setEmployeDAO(employeDAO);
     }
 
     /**
@@ -27,23 +49,107 @@ public class GestionGenerale_jframe extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        creationBureau_jpanel1 = new swing.CreationBureau_jpanel();
+        rechecheExacteBureau_jpanel1 = new swing.RechecheExacteBureau_jpanel();
+        recherchePartielleBureau_jpanel1 = new swing.RecherchePartielleBureau_jpanel();
+        creationEmploye_jpanel1 = new swing.CreationEmploye_jpanel();
+        rechercheEmploye_jpanel1 = new swing.RechercheEmploye_jpanel();
+        image_accueil1 = new swing.image_accueil();
         jMenuBar1 = new javax.swing.JMenuBar();
+        Accueil = new javax.swing.JMenu();
         jMenuBureau = new javax.swing.JMenu();
+        jMenuItemcreabur = new javax.swing.JMenuItem();
+        jMenuItemrechercheexacte = new javax.swing.JMenuItem();
+        jMenuItemrecherchepartielle = new javax.swing.JMenuItem();
         jMenuEmploye = new javax.swing.JMenu();
+        jMenuItemcreaemp = new javax.swing.JMenuItem();
+        jMenuItemrechemp = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
+        getContentPane().add(creationBureau_jpanel1, "card2");
+        getContentPane().add(rechecheExacteBureau_jpanel1, "card3");
+        getContentPane().add(recherchePartielleBureau_jpanel1, "card4");
+        getContentPane().add(creationEmploye_jpanel1, "card5");
+        getContentPane().add(rechercheEmploye_jpanel1, "card6");
+        getContentPane().add(image_accueil1, "card7");
+
+        Accueil.setText("Accueil");
+        jMenuBar1.add(Accueil);
 
         jMenuBureau.setText("Bureau");
+
+        jMenuItemcreabur.setText("Creation bureau");
+        jMenuItemcreabur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemcreaburActionPerformed(evt);
+            }
+        });
+        jMenuBureau.add(jMenuItemcreabur);
+
+        jMenuItemrechercheexacte.setText("Recherche exacte");
+        jMenuItemrechercheexacte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemrechercheexacteActionPerformed(evt);
+            }
+        });
+        jMenuBureau.add(jMenuItemrechercheexacte);
+
+        jMenuItemrecherchepartielle.setText("Recherche partielle");
+        jMenuItemrecherchepartielle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemrecherchepartielleActionPerformed(evt);
+            }
+        });
+        jMenuBureau.add(jMenuItemrecherchepartielle);
+
         jMenuBar1.add(jMenuBureau);
 
         jMenuEmploye.setText("Employe");
+
+        jMenuItemcreaemp.setText("Creation employe");
+        jMenuItemcreaemp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemcreaempActionPerformed(evt);
+            }
+        });
+        jMenuEmploye.add(jMenuItemcreaemp);
+
+        jMenuItemrechemp.setText("Recherche employe");
+        jMenuItemrechemp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemrechempActionPerformed(evt);
+            }
+        });
+        jMenuEmploye.add(jMenuItemrechemp);
+
         jMenuBar1.add(jMenuEmploye);
 
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+           
+    private void jMenuItemcreaburActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemcreaburActionPerformed
+        cardl.show(this.getContentPane(), "card2");
+    }//GEN-LAST:event_jMenuItemcreaburActionPerformed
+
+    private void jMenuItemrechercheexacteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemrechercheexacteActionPerformed
+       cardl.show(this.getContentPane(), "card3");
+    }//GEN-LAST:event_jMenuItemrechercheexacteActionPerformed
+
+    private void jMenuItemrecherchepartielleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemrecherchepartielleActionPerformed
+        cardl.show(this.getContentPane(), "card4");
+    }//GEN-LAST:event_jMenuItemrecherchepartielleActionPerformed
+
+    private void jMenuItemcreaempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemcreaempActionPerformed
+        cardl.show(this.getContentPane(), "card5");
+    }//GEN-LAST:event_jMenuItemcreaempActionPerformed
+
+    private void jMenuItemrechempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemrechempActionPerformed
+        cardl.show(this.getContentPane(), "card6");
+    }//GEN-LAST:event_jMenuItemrechempActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,8 +187,20 @@ public class GestionGenerale_jframe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Accueil;
+    private swing.CreationBureau_jpanel creationBureau_jpanel1;
+    private swing.CreationEmploye_jpanel creationEmploye_jpanel1;
+    private swing.image_accueil image_accueil1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuBureau;
     private javax.swing.JMenu jMenuEmploye;
+    private javax.swing.JMenuItem jMenuItemcreabur;
+    private javax.swing.JMenuItem jMenuItemcreaemp;
+    private javax.swing.JMenuItem jMenuItemrechemp;
+    private javax.swing.JMenuItem jMenuItemrechercheexacte;
+    private javax.swing.JMenuItem jMenuItemrecherchepartielle;
+    private swing.RechecheExacteBureau_jpanel rechecheExacteBureau_jpanel1;
+    private swing.RechercheEmploye_jpanel rechercheEmploye_jpanel1;
+    private swing.RecherchePartielleBureau_jpanel recherchePartielleBureau_jpanel1;
     // End of variables declaration//GEN-END:variables
 }

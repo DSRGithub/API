@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 
 public class Employe {
-     /**
+ /**
    * identifiant unique de l'employé 
    */
     protected int IDEMP;
@@ -175,5 +175,14 @@ public class Employe {
         }
         return true;
     }
+
+    public void setEmploye(Employe emp) {
+         this.IDEMP = IDEMP;
+        this.MATRICULE = MATRICULE;
+        this.NOM = NOM;
+        this.PRENOM = PRENOM;
+        this.IDBUR = IDBUR;
+    }
+   
 
 }

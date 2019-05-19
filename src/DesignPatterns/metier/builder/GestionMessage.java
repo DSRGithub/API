@@ -16,24 +16,21 @@ public class GestionMessage {
     public static void main(String[] args) {
 
         
-        Employe emp1 = new Employe(1,"A15","Gregoire","jcqm",1);       
-        System.out.println(emp1);
-         
-        Employe emp2 = new Employe(2, "A50", "Pierre", "Vanhoutryve",2);
-        System.out.println(emp2);
-        emp2.getEmploye().add(emp2);                                  
+        Employe emp = new Employe(1,"A15","Gregoire","jcqm",1);       
+        emp.setEmploye(emp);
+        Employe emp2 = new Employe(2,"A16","jules","Blth",1);       
+        emp.setEmploye(emp);
+       
           
         try {
             
-            Message msg1 = new Message.MessageBuilder().
-                    setDateEnvoi(LocalDate.of(2019, 05, 19)).
+            Message msg = new Message.MessageBuilder().
                     setIdmsg(1).
                     setContenu("Hello").
-                    setExpediteur("Logan").
-                    addEmploye(emp1).
+                    addEmploye(emp).
                     addEmploye(emp2).
                     build();
-            System.out.println(msg1);
+            System.out.println(msg);
             
         } catch (Exception e) {
             System.out.println("erreur "+e);

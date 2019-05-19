@@ -192,7 +192,7 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
             String rech=sigle_form.getText();
             List<Vue4DAO_PRO> lbur=bureauDAO.rech(rech);
             int i=dft1.getRowCount();
-            for(int j=i-1;j>0;j--){
+            for(int j=i-1;j>=0;j--){
                 dft1.removeRow(j);
             }
             for(Vue4DAO_PRO bur:lbur){
