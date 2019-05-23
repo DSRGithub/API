@@ -50,7 +50,7 @@ public class GestionMessage {
       int ch = 0;
         do {
             
-            System.out.println(" |======  MENU PRINCIPAL ======|\n1.envoi de message  \n2.recherche de message envoyé \n3.modification du message \n4.effacement du message \n5.fin");
+            System.out.println(" |======  MENU PRINCIPAL ======|\n1.envoi de message  \n2.recherche de message envoyé (unique) \n3.recherche de message envoyé( multiples)\n5.modification du message \n6.effacement du message \n5.fin");
             System.out.print("choix :");
             ch = sc.nextInt();
             sc.skip("\n");
@@ -61,23 +61,25 @@ public class GestionMessage {
                 case 2:
                     rechercheMessage();
                     break;
-                    
                 case 3:
+                    rech();
+                    break;    
+                case 4:
                     modificationMessage();
                     break;
                 
-                case 4:
+                case 5:
                     effacementMessage();
                     break;
                 
-                case 5:
+                case 6:
                     System.exit(0);
                     break;
                 default:
                     System.out.println("choix incorrect");
             }
 
-        } while (ch !=5);
+        } while (ch !=6);
         DBConnection.closeConnection();
       }
 
@@ -104,29 +106,57 @@ public class GestionMessage {
         // todo une boucle do while pour l envoi de plusieurs messages !
     }
       
-    
-       
-        public void rechercheMessage() throws SQLException{
+    public void rechercheMessage() throws SQLException{
         
         System.out.println("Recherche sur base de id  de l'employe  :"); 
         int id = sc.nextInt();
+         try{
         MessageActuel = MessageDAO.read(id);
-        System.out.println("employe recherche "+ MessageActuel);
+           System.out.println("message recherche "+ MessageActuel);
+        } catch( SQLException e) {
+            System.out.println("erreur " + e.getMessage());
+       }
+        
            
-          /* try {
-            List<Message> alc = ((MessageDAO) MessageDAO).read(id);
+         /*try {
+            List<Message> alc = (List<Message>) ((MessageDAO) MessageDAO).read(id);
             for (Message cl : alc) {
                 System.out.println(cl);
             }
         } catch (SQLException e) {
             System.out.println("erreur " + e.getMessage());
         }
-       */ 
+      */
+        
+    }
+       
+      
+        public void rech() throws SQLException{
+        
+        System.out.println("Recherche sur base de id  de l'employe  :"); 
+        int id = sc.nextInt(); 
+         try {
+            List<Message> alc = (List<Message>) ((MessageDAO) MessageDAO).rech(id);
+            for (Message cl : alc) {
+                System.out.println(cl);
+            }
+        } catch (SQLException e) {
+            System.out.println("erreur " + e.getMessage());
+        }
+      
         
     }
        
        
-       public void modificationMessage() { 
+       public void modificationMessage() throws SQLException { 
+         if (MessageActuel == null) {
+            System.out.println("Veuillez d'abord choisir un message actuel pour continuer");
+            rechercheMessage();
+        } 
+         if (MessageActuel == null) {
+            System.out.println("erreur aucun bureau actuel !");
+         }
+         else{   
         String option=""; int choix;
         try {
             
@@ -144,7 +174,7 @@ public class GestionMessage {
                             MessageDAO.update(MessageActuel); break;
                             
                         case 2: 
-                            System.out.println("Entrez le nouvel id employé: ");
+                            System.out.println("Entrez le nouvel id message: ");
                             int id=sc.nextInt();
                             MessageActuel.setIdemp(id);
                             MessageDAO.update(MessageActuel);break;
@@ -154,18 +184,27 @@ public class GestionMessage {
         } catch (SQLException e) {
             System.out.println("erreur " + e.getMessage());
         }
-         
+         } 
     }
       
    
     
       
-       public void effacementMessage(){  
+       public void effacementMessage() throws SQLException{ 
+         if (MessageActuel == null) {
+            System.out.println("Veuillez d'abord choisir un message actuel pour continuer");
+            rechercheMessage();
+        } 
+         if (MessageActuel == null) {
+            System.out.println("erreur aucun message actuel !");
+         }
+         else{    
        try {
               MessageDAO.delete(MessageActuel);
         } catch (SQLException e) {
             System.out.println("erreur " + e.getMessage());
         }
+       }
        // todo mettre en oeuvre la suppression en cascade message ( lie a info )
     } 
        

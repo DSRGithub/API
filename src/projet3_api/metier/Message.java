@@ -2,6 +2,7 @@
 package projet3_api.metier;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  *classe metier de message
@@ -108,8 +109,41 @@ public class Message {
         return "Message{" + "idmsg=" + idmsg + ", contenu=" + contenu + ", dateEnvoi=" + dateEnvoi + ", idemp=" + idemp + '}';
     }
 
-    public String getDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + this.idmsg;
+        hash = 29 * hash + Objects.hashCode(this.contenu);
+        hash = 29 * hash + Objects.hashCode(this.dateEnvoi);
+        hash = 29 * hash + this.idemp;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Message other = (Message) obj;
+        if (this.idmsg != other.idmsg) {
+            return false;
+        }
+        if (this.idemp != other.idemp) {
+            return false;
+        }
+        if (!Objects.equals(this.contenu, other.contenu)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateEnvoi, other.dateEnvoi)) {
+            return false;
+        }
+        return true;
     }
    
    

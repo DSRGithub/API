@@ -48,6 +48,7 @@ public class RechercheEmploye_jpanel extends javax.swing.JPanel {
         jButtonsupp = new javax.swing.JButton();
 
         jLabel1.setText("idemp");
+        jLabel1.setEnabled(false);
 
         jLabel2.setText("matricule");
 
@@ -57,6 +58,7 @@ public class RechercheEmploye_jpanel extends javax.swing.JPanel {
 
         jLabel5.setText("idbur");
 
+        idemp_form.setEditable(false);
         idemp_form.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idemp_formActionPerformed(evt);
@@ -111,7 +113,7 @@ public class RechercheEmploye_jpanel extends javax.swing.JPanel {
                             .addComponent(matricule_form)
                             .addComponent(idbur_form, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                             .addComponent(idemp_form))))
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +143,7 @@ public class RechercheEmploye_jpanel extends javax.swing.JPanel {
                     .addComponent(jButtonrech)
                     .addComponent(jButtonmaj)
                     .addComponent(jButtonsupp))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -154,7 +156,7 @@ public class RechercheEmploye_jpanel extends javax.swing.JPanel {
             nom_form.setText(emp.getNOM());
             prenom_form.setText(emp.getPRENOM());
             idbur_form.setText(""+emp.getIDBUR());
-            JOptionPane.showConfirmDialog(this,"employe trouvé","succès",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,"employe trouvé","succès",JOptionPane.INFORMATION_MESSAGE);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,e.getMessage(),"ERREUR",JOptionPane.ERROR_MESSAGE);
 
@@ -186,7 +188,7 @@ public class RechercheEmploye_jpanel extends javax.swing.JPanel {
             nom_form.setText("");
             prenom_form.setText("");
             idbur_form.setText("");
-                         JOptionPane.showMessageDialog(this,"employe effacé","succès",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,"employe effacé","succès",JOptionPane.INFORMATION_MESSAGE);
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,e.getMessage(),"ERREUR",JOptionPane.ERROR_MESSAGE);

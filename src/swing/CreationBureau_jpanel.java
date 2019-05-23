@@ -58,6 +58,7 @@ public class CreationBureau_jpanel extends javax.swing.JPanel {
 
         idbur_form.setText("IDBUR");
 
+        idbur.setEditable(false);
         idbur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idburActionPerformed(evt);
@@ -83,7 +84,7 @@ public class CreationBureau_jpanel extends javax.swing.JPanel {
                         .addComponent(desc_form)
                         .addComponent(idbur))
                     .addComponent(ButCreateBureau, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +107,7 @@ public class CreationBureau_jpanel extends javax.swing.JPanel {
                     .addComponent(desc))
                 .addGap(32, 32, 32)
                 .addComponent(ButCreateBureau, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

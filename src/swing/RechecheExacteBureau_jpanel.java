@@ -59,6 +59,7 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
         jTableVue = new javax.swing.JTable();
 
         jLabel1.setText("idbur");
+        jLabel1.setEnabled(false);
 
         jLabel2.setText("sigle");
 
@@ -87,6 +88,7 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
             }
         });
 
+        idbur_form.setEditable(false);
         idbur_form.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idbur_formActionPerformed(evt);
@@ -139,7 +141,7 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
                             .addGap(85, 85, 85)
                             .addComponent(jButtoneffacer))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,7 +169,7 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
                     .addComponent(jButtonrecherche)
                     .addComponent(jButtonmaj)
                     .addComponent(jButtoneffacer))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -183,7 +185,7 @@ public class RechecheExacteBureau_jpanel extends javax.swing.JPanel {
             idbur_form.setText(""+bur.getIDBUR());
             tel_form.setText(""+bur.getTEL());
             desc_form.setText(bur.getDESCRIPTION());
-            JOptionPane.showConfirmDialog(this,"bureau trouvé","succès",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,"bureau trouvé","succès",JOptionPane.INFORMATION_MESSAGE);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,e.getMessage(),"ERREUR",JOptionPane.ERROR_MESSAGE);
 

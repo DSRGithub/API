@@ -121,7 +121,7 @@ public class EmployeDAO extends DAO<Employe> {
             pstm.setInt(3, obj.getIDBUR());
             int n = pstm.executeUpdate();
             if (n == 0) {
-                throw new SQLException("aucune ligne du employe mise à jour");
+                throw new SQLException("aucune ligne d' employe mise à jour ! et modification de matricule non permis !");
             }
             return obj;
         }

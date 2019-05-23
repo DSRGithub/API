@@ -125,7 +125,7 @@ public class BureauDAO extends DAO<Bureau> {
             pstm.setString(2, obj.getDESCRIPTION());
             int n = pstm.executeUpdate();
             if (n == 0) {
-                throw new SQLException("aucune ligne du bureau mise à jour");
+                throw new SQLException("aucune ligne du bureau mise à jour ! et modification de sigle non permis !");
             }
             return obj;
         }

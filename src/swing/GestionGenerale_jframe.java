@@ -49,14 +49,15 @@ public class GestionGenerale_jframe extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        image_accueil1 = new swing.image_accueil();
         creationBureau_jpanel1 = new swing.CreationBureau_jpanel();
         rechecheExacteBureau_jpanel1 = new swing.RechecheExacteBureau_jpanel();
         recherchePartielleBureau_jpanel1 = new swing.RecherchePartielleBureau_jpanel();
         creationEmploye_jpanel1 = new swing.CreationEmploye_jpanel();
         rechercheEmploye_jpanel1 = new swing.RechercheEmploye_jpanel();
-        image_accueil1 = new swing.image_accueil();
         jMenuBar1 = new javax.swing.JMenuBar();
         Accueil = new javax.swing.JMenu();
+        Image = new javax.swing.JMenuItem();
         jMenuBureau = new javax.swing.JMenu();
         jMenuItemcreabur = new javax.swing.JMenuItem();
         jMenuItemrechercheexacte = new javax.swing.JMenuItem();
@@ -67,14 +68,26 @@ public class GestionGenerale_jframe extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
+        getContentPane().add(image_accueil1, "card7");
         getContentPane().add(creationBureau_jpanel1, "card2");
         getContentPane().add(rechecheExacteBureau_jpanel1, "card3");
         getContentPane().add(recherchePartielleBureau_jpanel1, "card4");
         getContentPane().add(creationEmploye_jpanel1, "card5");
         getContentPane().add(rechercheEmploye_jpanel1, "card6");
-        getContentPane().add(image_accueil1, "card7");
+
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(102, 102, 102), new java.awt.Color(51, 51, 51), new java.awt.Color(102, 102, 102)));
+        jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         Accueil.setText("Accueil");
+
+        Image.setText("Accueil");
+        Image.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImageActionPerformed(evt);
+            }
+        });
+        Accueil.add(Image);
+
         jMenuBar1.add(Accueil);
 
         jMenuBureau.setText("Bureau");
@@ -132,7 +145,7 @@ public class GestionGenerale_jframe extends javax.swing.JFrame {
 
            
     private void jMenuItemcreaburActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemcreaburActionPerformed
-        cardl.show(this.getContentPane(), "card2");
+       cardl.show(this.getContentPane(), "card2");
     }//GEN-LAST:event_jMenuItemcreaburActionPerformed
 
     private void jMenuItemrechercheexacteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemrechercheexacteActionPerformed
@@ -150,6 +163,10 @@ public class GestionGenerale_jframe extends javax.swing.JFrame {
     private void jMenuItemrechempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemrechempActionPerformed
         cardl.show(this.getContentPane(), "card6");
     }//GEN-LAST:event_jMenuItemrechempActionPerformed
+
+    private void ImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImageActionPerformed
+        cardl.show(this.getContentPane(), "card7");
+    }//GEN-LAST:event_ImageActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,6 +205,7 @@ public class GestionGenerale_jframe extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Accueil;
+    private javax.swing.JMenuItem Image;
     private swing.CreationBureau_jpanel creationBureau_jpanel1;
     private swing.CreationEmploye_jpanel creationEmploye_jpanel1;
     private swing.image_accueil image_accueil1;

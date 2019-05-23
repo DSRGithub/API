@@ -59,6 +59,8 @@ public class Gestion_Bureau_jframe extends javax.swing.JFrame {
         getContentPane().add(recherchePartielleBureau_jpanel1, "card3");
         getContentPane().add(rechecheExacteBureau_jpanel1, "card4");
 
+        jMenuBar2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jMenu3.setText("Menu Bureau");
 
         creation.setText("creation");

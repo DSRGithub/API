@@ -58,6 +58,10 @@ public class Gestion_Employe_jframe extends javax.swing.JFrame {
         getContentPane().add(creationEmploye_jpanel1, "card2");
         getContentPane().add(rechercheEmploye_jpanel1, "card3");
 
+        jMenuBar1.setBackground(new java.awt.Color(51, 204, 255));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 204), new java.awt.Color(102, 255, 255)));
+        jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         jMenuGestionEmploye.setText("Menu Employe");
 
         jMenuItemcrea.setText("Creation Employe");

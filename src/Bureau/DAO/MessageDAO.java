@@ -32,7 +32,7 @@ public class MessageDAO extends DAO<Message> {
       public Message create(Message obj) throws SQLException {
         int n;
         Message b = null;
-        String q1="insert into PRO_MESSAGE(contenu,idemp) values(?,?)";
+        String q1="insert into PRO_MESSAGE(contenu,dateEnvoi,idemp) values(?,?,?)";
         String q2="select idmsg from PRO_MESSAGE where contenu=? and dateEnvoi=? and  idemp=?";
         try(PreparedStatement pstm1=dbConnect.prepareStatement(q1); 
                 PreparedStatement pstm2=dbConnect.prepareStatement(q2)){
@@ -40,7 +40,7 @@ public class MessageDAO extends DAO<Message> {
             pstm1.setInt(2,obj.getIdemp());
             int p = pstm1.executeUpdate();
             if (p == 0) {
-                throw new SQLException("erreur de creation d'un employe, aucune ligne créée");
+                throw new SQLException("erreur de creation d'un message, aucune ligne créée");
             }
             pstm2.setString(1, obj.getContenu());
             pstm1.setDate(1, java.sql.Date.valueOf(obj.getDateEnvoi()));
@@ -87,10 +87,10 @@ public class MessageDAO extends DAO<Message> {
     
     @Override
     public Message update(Message obj) throws SQLException {
-        String req = "update PRO_MESSAGE set contenu=?,idemp=? where idmsg= ?";
+        String req = "update PRO_MESSAGE set contenu=? where idmsg= ?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
-            
+            pstm.setInt(3, obj.getIdmsg());
             pstm.setString(1, obj.getContenu());
             pstm.setInt(2, obj.getIdemp());
             int n = pstm.executeUpdate();
@@ -128,4 +128,27 @@ public class MessageDAO extends DAO<Message> {
          }
 
     
+    public List<Message> rech(int idemp) throws SQLException {
+        List<Message> msg = new ArrayList<>();
+        String req="select * from PRO_MESSAGE where idemp=?";
+         try(PreparedStatement p1=dbConnect.prepareStatement(req)){
+             p1.setInt(1, idemp);
+             try(ResultSet rs=p1.executeQuery()){
+                 boolean trouve = false;
+                 if(rs.next()){
+                     trouve = true;
+                     String contenu=rs.getString("CONTENU");
+                     LocalDate dateEnvoi = rs.getDate("DATEENVOI").toLocalDate();
+                     int    idmsg= rs.getInt("IDMSG");
+                     msg.add(new Message(idmsg,contenu,dateEnvoi,idemp));
+                 }
+                 if (!trouve){
+                     throw new SQLException("message  inconnu");
+                 }else {
+                    return msg;
+                }
+             }
+         }
+          
+         }
 }
