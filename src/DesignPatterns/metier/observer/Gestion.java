@@ -13,8 +13,8 @@ public class Gestion {
     public static void main(String[] args) {
          Bureau b1 = new Bureau(1, "F40","04025326252","Bureau avec les I7");
          Bureau b2 = new Bureau(2, "F41","04588987474","Bureau avec les MacBook");
-         Employe emp1= new Employe(1,"AAA","Jean","Labie",1);
-         Employe emp2= new Employe(2,"BBB","Jules","Blothiaux",2);
+         Employe emp1= new Employe(1,"AAA","Jean","Labie",b1);
+         Employe emp2= new Employe(2,"BBB","Jules","Blothiaux",b2);
          b1.addObserver(emp1);
          b1.addObserver(emp2);
          b2.addObserver(emp1);

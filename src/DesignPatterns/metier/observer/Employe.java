@@ -6,7 +6,7 @@
 package DesignPatterns.metier.observer;
 
 import java.util.Objects;
-
+import DesignPatterns.metier.observer.Bureau;
 /**
  *classe metier des employes 
  * @author David
@@ -32,7 +32,8 @@ public class Employe extends Observer{
    /**
    * identifiant unique du bureau
    */
-   protected int IDBUR;
+   // protected int IDBUR;
+   protected Bureau bureau;
    /**
    *  constructeur par défaut
    */
@@ -46,33 +47,40 @@ public class Employe extends Observer{
  * @param PRENOM prenom de l'employé
  * @param IDBUR identifiant unique du bureau ,affecté a la création
  */
-    public Employe(int IDEMP, String MATRICULE, String NOM, String PRENOM, int IDBUR) {
+    public Employe(int IDEMP, String MATRICULE, String NOM, String PRENOM, Bureau bureau) {
         this.IDEMP = IDEMP;
         this.MATRICULE = MATRICULE;
         this.NOM = NOM;
         this.PRENOM = PRENOM;
-        this.IDBUR = IDBUR;
+        this.bureau = bureau;
     }
 
-    
-    /**
-    * getter IDBUR
-    * @return identifiant du bureau ( on indique ce que cela retourne )
-    */
-    public int getIDBUR() {
-        return IDBUR;
+    public Bureau getBureau() {    
+        return bureau;
     }
+
+    /**
+     * getter IDBUR
+     * @return identifiant du bureau ( on indique ce que cela retourne )
+     */
+    /* public int getIDBUR() {
+    return IDBUR;
+    }*/
     /**
      * setter IDBUR
      * @param IDBUR identifiant du bureau
      */
-    public void setIDBUR(int IDBUR) {
-        this.IDBUR = IDBUR;
+    /*public void setIDBUR(int IDBUR) {
+    this.IDBUR = IDBUR;
+    }*/
+    public void setBureau(Bureau bureau) {    
+        this.bureau = bureau;
     }
+
     /**
-    * getter IDBUR
-    * @return identifiant de l'employé
-    */
+     * getter IDBUR
+     * @return identifiant de l'employé
+     */
     public int getIDEMP() {
         return IDEMP;
     }
@@ -125,26 +133,25 @@ public class Employe extends Observer{
     public void setPRENOM(String PRENOM) {
         this.PRENOM = PRENOM;
     }
-     /**
- * méthode toString
- * @return informations complètes
- */
-    @Override
-    public String toString() {
-        return "Employe{" + "IDEMP=" + IDEMP + ", MATRICULE=" + MATRICULE + ", NOM=" + NOM + ", PRENOM=" + PRENOM + '}';
-    }
 
+   
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + this.IDEMP;
-        hash = 97 * hash + Objects.hashCode(this.MATRICULE);
-        hash = 97 * hash + Objects.hashCode(this.NOM);
-        hash = 97 * hash + Objects.hashCode(this.PRENOM);
-        hash = 97 * hash + this.IDBUR;
+        hash = 71 * hash + this.IDEMP;
+        hash = 71 * hash + Objects.hashCode(this.MATRICULE);
+        hash = 71 * hash + Objects.hashCode(this.NOM);
+        hash = 71 * hash + Objects.hashCode(this.PRENOM);
+        hash = 71 * hash + Objects.hashCode(this.bureau);
         return hash;
     }
 
+    /**
+     * méthode toString
+     * @return informations complètes
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -160,9 +167,6 @@ public class Employe extends Observer{
         if (this.IDEMP != other.IDEMP) {
             return false;
         }
-        if (this.IDBUR != other.IDBUR) {
-            return false;
-        }
         if (!Objects.equals(this.MATRICULE, other.MATRICULE)) {
             return false;
         }
@@ -172,10 +176,17 @@ public class Employe extends Observer{
         if (!Objects.equals(this.PRENOM, other.PRENOM)) {
             return false;
         }
+        if (!Objects.equals(this.bureau, other.bureau)) {
+            return false;
+        }
         return true;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Employe{" + "IDEMP=" + IDEMP + ", MATRICULE=" + MATRICULE + ", NOM=" + NOM + ", PRENOM=" + PRENOM + ", bureau=" + bureau + '}';
+    }
+
     @Override
     public void update(String msg) {
         System.out.println(PRENOM+" "+NOM+" a reçu le msg :"+msg);
